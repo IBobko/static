@@ -27,6 +27,7 @@ public class UploadPageController {
 
         switch(contentType) {
             case "image/png": extension = "png"; break;
+            case "image/jpeg": extension = "jpg"; break;
             default: throw new UnsupportedOperationException();
         }
         final String filename = RandomStringUtils.randomAlphanumeric(6) + "." + extension;
