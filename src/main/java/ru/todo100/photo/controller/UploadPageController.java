@@ -2,12 +2,12 @@ package ru.todo100.photo.controller;
 
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.lang.RandomStringUtils;
+import org.springframework.core.io.FileSystemResource;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.File;
 import java.io.IOException;
@@ -30,8 +30,15 @@ public class UploadPageController {
             default: throw new UnsupportedOperationException();
         }
         final String filename = RandomStringUtils.randomAlphanumeric(6) + "." + extension;
-        File file = new File("C:/Server/" +filename + "." + extension);
+        File file = new File("C:/Server/" +filename);
         FileUtils.writeByteArrayToFile(file, image.getBytes());
         response.getWriter().println(filename);
     }
+
+    @RequestMapping(value = "/files/{file_name}", method = RequestMethod.GET)
+    @ResponseBody public FileSystemResource getFile(@PathVariable("file_name") String fileName) {
+        File file = new File("C:/Server/" +fileName);
+        return new FileSystemResource(file);
+    }
+
 }
