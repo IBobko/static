@@ -15,9 +15,8 @@
 		http://www.springframework.org/schema/mvc/spring-mvc.xsd"
 >
     <annotation-driven/>
-    <resources
-            mapping="/resources/**"
-            location="/resources/"/>
+    <resources mapping="/video/**" location="file:/C:/Server/video/"/>
+
     <context:component-scan base-package="ru.todo100.photo.controller"/>
     <beans:bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
         <beans:property name="maxUploadSize" value="500000" />

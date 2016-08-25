@@ -37,7 +37,9 @@ public class UploadPageController {
     }
 
     @RequestMapping(value = "/files/{file_name}", method = RequestMethod.GET)
-    @ResponseBody public FileSystemResource getFile(@PathVariable("file_name") String fileName) {
+    @ResponseBody
+    public FileSystemResource getFile(HttpServletResponse response, @PathVariable("file_name") String fileName) {
+        response.addHeader("Access-Control-Allow-Origin","*");
         File file = new File("C:/Server/" +fileName);
         return new FileSystemResource(file);
     }
