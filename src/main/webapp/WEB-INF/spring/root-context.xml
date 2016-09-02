@@ -10,6 +10,6 @@
     <mvc:annotation-driven/>
     <context:annotation-config/>
     <mvc:cors>
-        <mvc:mapping path="/**" allowed-origins="http://yandex.ru" />
+        <mvc:mapping path="/**" allowed-origins="http://localhost:8080" />
     </mvc:cors>
 </beans>
