@@ -33,7 +33,7 @@ public class UploadPageController {
         final String filename = RandomStringUtils.randomAlphanumeric(6) + "." + extension;
         File file = new File("C:/Server/" +filename);
         FileUtils.writeByteArrayToFile(file, image.getBytes());
-        response.getWriter().println(filename);
+        response.getWriter().print(filename);
     }
 
     @RequestMapping(value = "/files/{file_name}", method = RequestMethod.GET)
