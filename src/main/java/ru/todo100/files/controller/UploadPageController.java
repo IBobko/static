@@ -1,4 +1,4 @@
-package ru.todo100.photo.controller;
+package ru.todo100.files.controller;
 
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.lang.RandomStringUtils;
