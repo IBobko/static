@@ -29,7 +29,7 @@ public class RemoveController {
             System.err.format("%s not empty%n", path);
         } catch (IOException x) {
             // File permission problems are caught here.
-            x.printStackTrace();
+            System.err.format(x.getMessage());
         }
         return filename;
     }
