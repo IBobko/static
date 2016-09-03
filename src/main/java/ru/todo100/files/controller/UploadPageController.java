@@ -7,7 +7,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
-import javax.servlet.http.HttpServletResponse;
 import java.io.File;
 import java.io.IOException;
 
@@ -19,19 +18,18 @@ import java.io.IOException;
 public class UploadPageController {
     @ResponseBody
     @RequestMapping("")
-    public void index(HttpServletResponse response,@RequestParam(value = "image", required = false) MultipartFile image) throws IOException {
+    public String index(@RequestParam(value = "image", required = false) MultipartFile image) throws IOException {
         String contentType = image.getContentType();
         final String extension;
-
         switch(contentType) {
             case "image/png": extension = "png"; break;
             case "image/jpeg": extension = "jpg"; break;
             default: throw new UnsupportedOperationException();
         }
         final String filename = RandomStringUtils.randomAlphanumeric(6) + "." + extension;
-        File file = new File("C:/Server/" +filename);
+        File file = new File("C:/Server/" + filename);
         FileUtils.writeByteArrayToFile(file, image.getBytes());
-        response.getWriter().print(filename);
+        return filename;
     }
 
     @RequestMapping(value = "/files/{file_name}", method = RequestMethod.GET)
