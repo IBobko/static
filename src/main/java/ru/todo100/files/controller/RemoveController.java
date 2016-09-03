@@ -3,6 +3,7 @@ package ru.todo100.files.controller;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletResponse;
@@ -16,10 +17,8 @@ import java.nio.file.*;
 @RequestMapping("/remove/file")
 public class RemoveController {
     @ResponseBody
-    @RequestMapping(value = "/{filename:.+}",produces = "text/html")
-    public String index(@PathVariable String filename, HttpServletResponse response){
-        response.setHeader("Content-Language","en-US");
-
+    @RequestMapping
+    public String index(@RequestParam String filename){
         Path path = Paths.get("C:/Server/" + filename);
         try {
             Files.delete(path);
