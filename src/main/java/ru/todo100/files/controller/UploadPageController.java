@@ -7,7 +7,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.File;
 import java.io.IOException;
@@ -21,9 +20,8 @@ public class UploadPageController {
     @ResponseBody
     @RequestMapping("")
     public void index(HttpServletResponse response,@RequestParam(value = "image", required = false) MultipartFile image) throws IOException {
-        //response.getWriter().println(image.getContentType());
         String contentType = image.getContentType();
-        String extension = null;
+        final String extension;
 
         switch(contentType) {
             case "image/png": extension = "png"; break;
@@ -38,8 +36,7 @@ public class UploadPageController {
 
     @RequestMapping(value = "/files/{file_name}", method = RequestMethod.GET)
     @ResponseBody
-    public FileSystemResource getFile(HttpServletResponse response, @PathVariable("file_name") String fileName) {
-        response.addHeader("Access-Control-Allow-Origin","*");
+    public FileSystemResource getFile(@PathVariable("file_name") String fileName) {
         File file = new File("C:/Server/" +fileName);
         return new FileSystemResource(file);
     }
