@@ -15,7 +15,7 @@ import java.nio.file.*;
 @RequestMapping("/remove/file")
 public class RemoveController {
     @ResponseBody
-    @RequestMapping("/{filename}")
+    @RequestMapping("/{filename:.+}")
     public String index(@PathVariable String filename){
         Path path = Paths.get("C:/Server/" + filename);
         try {
