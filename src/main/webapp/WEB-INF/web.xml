@@ -15,12 +15,6 @@
     </listener>
 
     <filter>
-        <filter-name>corsFilter</filter-name>
-        <filter-class>ru.todo100.files.filter.CorsFilter</filter-class>
-    </filter>
-
-
-    <filter>
         <filter-name>characterEncodingFilter</filter-name>
         <filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>
         <async-supported>true</async-supported>
@@ -34,10 +28,15 @@
         </init-param>
     </filter>
 
-    <filter-mapping>
-        <filter-name>corsFilter</filter-name>
-        <url-pattern>/*</url-pattern>
-    </filter-mapping>
+    <!--<filter>-->
+        <!--<filter-name>corsFilter</filter-name>-->
+        <!--<filter-class>ru.todo100.files.filter.CorsFilter</filter-class>-->
+    <!--</filter>-->
+
+    <!--<filter-mapping>-->
+        <!--<filter-name>corsFilter</filter-name>-->
+        <!--<url-pattern>/*</url-pattern>-->
+    <!--</filter-mapping>-->
 
     <filter-mapping>
         <filter-name>characterEncodingFilter</filter-name>
